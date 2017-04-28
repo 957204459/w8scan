@@ -15,6 +15,8 @@ class Task_Controller {
         include View::getview("task_add");  
     }
     function manager($params = ''){
+        $task = new Task_Model();
+        $LogData = $task->GetPageData();
         include View::getView("header");
         include View::getview("task_manager"); 
     }
@@ -23,6 +25,18 @@ class Task_Controller {
         if($params[1]=='/'&&!empty($params[2])){
             $token = $params[2];
             include View::getView("task_callback");
+        }else{
+            exit("sql error");//假错误
+        }
+    }
+
+    function reciver_data($params = ''){
+        $data = $_POST["data"];
+        if($params[1]=='/'&&!empty($params[2])&&!empty($data)){
+            $token = $params[2];
+            $task = new Task_Model();
+            $task->update_Result($token,$data);
+            echo "success!";
         }else{
             exit("sql error");//假错误
         }

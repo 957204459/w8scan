@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-import urllib,hashlib,Queue,threading,json
+import urllib,hashlib,Queue,threading,json,urlparse,socket,base64
 
 # init hackhttp
 code = urllib.urlopen("https://raw.githubusercontent.com/BugScanTeam/hackhttp/master/hackhttp/hackhttp.py")
@@ -22,6 +22,9 @@ class w8_Common(object):
         return code,head,body,redirect,log
 
     @staticmethod
+    def urlget(url):
+        return urllib.urlopen(url).read()
+    @staticmethod
     def post(url,data):
         hh = hackhttp()
         code, head, body, redirect, log = hh.http(url,post=data)
@@ -33,12 +36,13 @@ class w8_Common(object):
         if code != 200:
             return 1
         heads = head.split('\n')
+        strhead = ''
         for i in heads:
             if "Server" in i:
-                print i.strip()
+                strhead = i.strip()
             if "X-Powered-By" in i:
-                print i.strip()
-        return 0
+                strhead = strhead + " " +i.strip()
+        return strhead
 
     @staticmethod
     def gettitle(url):
@@ -111,6 +115,28 @@ class UrlManager(object):
         self.old_urls.add(new_url)
         return new_url
 
+class w8_report(object):
+    def __init__(self):
+        self.data = {}
+        
+    def send(self):
+        content = base64.encodestring(self._build())
+        try:
+            w8_Common.post(_B + "?send/"+_Token,"data=" + content)
+        except Exception,e:
+            print Exception,":",e
+
+    def add(self,key,data):
+        self.data[key] = data
+
+    def add_list(self, key, data):
+        if key not in self.data:
+            self.data[key] = []
+        self.data[key].append(data)
+
+    def _build(self):
+        return json.dumps(self.data)
+
 # spider code
 import re
 from urlparse import urljoin
@@ -154,7 +180,8 @@ class SpiderMain(object):
             if self.urls.has_new_url() is False:
                 break
             new_url = self.urls.get_new_url()
-            print("craw:" + new_url)
+            # print("craw:" + new_url)
+            report.add_list("爬虫",new_url)
             code, head, body, redirect, log =w8_Common.get(new_url)
             if code != 200:
                 continue
@@ -166,8 +193,25 @@ class SpiderMain(object):
                     code = urllib.urlopen(tem_plugin).read()
                     exec code
                     exec "run(new_url,body)"
+            report.send()
 
 # _U = 'http://www.adfun.cn/'
+report = w8_report()
+
+def gethostbyname(url):
+    domain = urlparse.urlparse(url)
+    # domain.netloc
+    if domain.netloc is None:
+        return None
+    ip = socket.gethostbyname(domain.netloc)
+    return ip
+
+def GetBaseInfo():
+    report.add("server",w8_Common.getheaders(_U))
+    report.add("title",w8_Common.gettitle(_U))
+    report.add("ip",gethostbyname(_U))
+GetBaseInfo()
+
 if plugin is not None:
     for temp_plugin in plugin:
         code = urllib.urlopen(temp_plugin).read()

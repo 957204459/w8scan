@@ -30,6 +30,7 @@ else:
     _SPlugin = '<?php echo json_encode($spider_plugins);?>'
     _B = '<?php echo BLOG_URL;?>'
     _U = '<?php echo $url;?>'
+    _Token = '<?php echo $token;?>'
     print "[...] w8scan is working!!!"
     print "[...] Initialize engine ..."
     time.sleep(2)

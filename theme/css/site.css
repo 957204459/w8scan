@@ -150,3 +150,12 @@ tr.pending-user:hover span.user-actions, tr.list-users:hover td div.btn-group, t
 	.list-roles td:nth-of-type(4):before { content: "Slug"; }
 	.list-roles td:nth-of-type(5):before { content: "Actions"; }
 }
+@media (min-width: 992px) {
+  .modal-lg {
+    width: 900px;
+  }
+  .modal {
+    width: 900px;
+  }
+      
+}

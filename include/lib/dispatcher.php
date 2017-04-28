@@ -99,6 +99,11 @@
                 'reg_0' => '|^.*/\?get(/)?(\w+)?|'
             ),
             array(
+                'controller' => 'Task_Controller',
+                'method' => 'reciver_data',
+                'reg_0' => '|^.*/\?send(/)?(\w+)?|'
+            ),
+            array(
                 'controller' => 'Index_Controller',
                 'method' => 'display',
                 'reg_0' => '|^/?([\?&].*)?$|'

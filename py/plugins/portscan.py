@@ -23,19 +23,13 @@ class PortScan:
             if result == 0:
                 self.lock.acquire()
                 print  ip, ':', port, 'open'
+                report.add_list("端口",port)
                 self.lock.release()
             s.close()
         except:
             pass
 
-def gethostbyname(url):
-    domain = urlparse.urlparse(url)
-    # domain.netloc
-    if domain.netloc is None:
-        return None
-    ip = socket.gethostbyname(domain.netloc)
-    return ip
-
 ip = gethostbyname(_U)    
 print "Start scan port -> IP:",ip
 PortScan(ip)
+report.send()

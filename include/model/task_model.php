@@ -44,6 +44,22 @@
         return $logData["token"];
     }
 
+    /**
+	 * 显示界面
+	 *
+	 * @param 
+	 * @return array $logData
+	 */
+    function GetPageData(){
+        $sql = "SELECT * FROM " . DB_PREFIX . "tasklist";
+        $res = $this->db->query($sql);
+        $logData = [];
+        while ($row = $this->db->fetch_array($res)) {
+			$logData[] = $row;
+		}
+        return $logData;
+    }
+
     function build_token(){
         $str = time()."-".rand(100,999);
         return md5($str);
@@ -59,4 +75,11 @@
             return false;
         }
     }
+
+    function update_Result($token,$data){
+        $sql = "update " . DB_PREFIX . "tasklist set result = '$data' where token='$token'";
+        $res = $this->db->query($sql);
+    }
+
+
  }
