@@ -37,10 +37,11 @@
         $logData["descript"] = $descript;
         $logData["status"] = 0;
         $logData["addtime"] = time();
-        $logData["spider_plugins"] = addslashes(serialize($spider_plugins));
-        $logData["plugins"] = addslashes(serialize($plugins));
+        $logData["spider_plugins"] = serialize($spider_plugins);
+        $logData["plugins"] = serialize($plugins);
         $logData["token"] = $this->build_token();
         $logData["uid"] = $uid;
+        $logData["result"] = '';
         $this->addlog($logData);
         return $logData["token"];
     }

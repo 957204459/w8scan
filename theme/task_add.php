@@ -43,12 +43,6 @@ IsLogin()
                 </div>
             </div>
             <div class="control-group">
-                <label class="control-label" for="slug">Slug</label>
-                <div class="controls">
-                    <input type="text" class="input-xlarge" id="slug" />
-                </div>
-            </div>
-            <div class="control-group">
                 <label class="control-label" for="slug">选择插件</label>
                 <div class="controls">
                     <?php 

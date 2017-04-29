@@ -4,8 +4,8 @@ import urllib,hashlib,Queue,threading,json,urlparse,socket,base64
 
 # init hackhttp
 code = urllib.urlopen("https://raw.githubusercontent.com/BugScanTeam/hackhttp/master/hackhttp/hackhttp.py")
-
 exec(code.read())
+
 # Testing Hackhttp
 # hh = hackhttp()
 # code, head, body, redirect, log = hh.http('https://blog.yesfree.pw')
@@ -18,7 +18,11 @@ class w8_Common(object):
     @staticmethod
     def get(url):
         hh = hackhttp()
-        code, head, body, redirect, log = hh.http(url)
+        try:
+            code, head, body, redirect, log = hh.http(url)
+        except Exception,e:
+            print Exception,":",e;
+            code,head,body,redirect,log = "","","","",""
         return code,head,body,redirect,log
 
     @staticmethod
@@ -27,7 +31,11 @@ class w8_Common(object):
     @staticmethod
     def post(url,data):
         hh = hackhttp()
-        code, head, body, redirect, log = hh.http(url,post=data)
+        try:
+            code, head, body, redirect, log = hh.http(url,post=data)
+        except Exception,e:
+            print Exception,":",e;
+            code,head,body,redirect,log = "","","","",""
         return code, head, body, redirect, log
 
     @staticmethod

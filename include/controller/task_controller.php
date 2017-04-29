@@ -19,6 +19,8 @@ class Task_Controller {
         $task = new Task_Model();
         $uid = (int)$_SESSION["uid"];
         $LogData = $task->GetPageData($uid);
+        // print_r($LogData);
+        // die();
         include View::getView("header");
         include View::getview("task_manager"); 
     }
