@@ -42,7 +42,7 @@
 					<li><a href="?webdna_manager">指纹管理</a></li>
 				</ul>
 			  </li>
-			  <li><a href="?about">关于</a></li>
+			  <li><a href="./?about">关于</a></li>
             </ul>
           </div>
         </div>

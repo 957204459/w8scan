@@ -64,6 +64,11 @@
                 'reg_0' => '|^.*/\?reg|'
             ),
             array(
+                'controller' => 'About_Controller',
+                'method' => 'display',
+                'reg_0' => '|^.*/\?about|'
+            ),
+            array(
                 'controller' => 'Index_Controller',
                 'method' => 'logout',
                 'reg_0' => '|^.*/\?logout|'

@@ -216,7 +216,7 @@ if plugin is not None:
         code = urllib.urlopen(temp_plugin).read()
         exec code
 
-if self.splugins is not None:
+if splugins is not None:
     ww = SpiderMain(_U)
     ww.craw()
 

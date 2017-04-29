@@ -31,15 +31,16 @@
 	}
 
 
-    function add($url,$descript,$plugins,$spider_plugins){
+    function add($url,$descript,$plugins,$spider_plugins,$uid){
         $logData = array();
         $logData["url"] = $url;
         $logData["descript"] = $descript;
         $logData["status"] = 0;
         $logData["addtime"] = time();
-        $logData["spider_plugins"] = serialize($spider_plugins);
-        $logData["plugins"] = serialize($plugins);
+        $logData["spider_plugins"] = addslashes(serialize($spider_plugins));
+        $logData["plugins"] = addslashes(serialize($plugins));
         $logData["token"] = $this->build_token();
+        $logData["uid"] = $uid;
         $this->addlog($logData);
         return $logData["token"];
     }
@@ -50,8 +51,8 @@
 	 * @param 
 	 * @return array $logData
 	 */
-    function GetPageData(){
-        $sql = "SELECT * FROM " . DB_PREFIX . "tasklist";
+    function GetPageData($uid){
+        $sql = "SELECT * FROM " . DB_PREFIX . "tasklist where uid='$uid'";
         $res = $this->db->query($sql);
         $logData = [];
         while ($row = $this->db->fetch_array($res)) {
