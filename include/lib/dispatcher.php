@@ -64,6 +64,11 @@
                 'reg_0' => '|^.*/\?reg|'
             ),
             array(
+                'controller' => 'Index_Controller',
+                'method' => 'logout',
+                'reg_0' => '|^.*/\?logout|'
+            ),
+            array(
                 'controller' => 'Task_Controller',
                 'method' => 'add',
                 'reg_0' => '|^.*/\?task_add|'

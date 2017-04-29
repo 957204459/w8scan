@@ -188,11 +188,10 @@ class SpiderMain(object):
             new_urls = self._parse(new_url, body)
             self.urls.add_new_urls(new_urls)
             
-            if self.splugins is not None:
-                for tem_plugin in self.splugins:
-                    code = urllib.urlopen(tem_plugin).read()
-                    exec code
-                    exec "run(new_url,body)"
+            for tem_plugin in self.splugins:
+                code = urllib.urlopen(tem_plugin).read()
+                exec code
+                exec "run(new_url,body)"
             report.send()
 
 # _U = 'http://www.adfun.cn/'
@@ -216,8 +215,10 @@ if plugin is not None:
     for temp_plugin in plugin:
         code = urllib.urlopen(temp_plugin).read()
         exec code
-ww = SpiderMain(_U)
-ww.craw()
+
+if self.splugins is not None:
+    ww = SpiderMain(_U)
+    ww.craw()
 
 if __name__ == '__main__':
     pass

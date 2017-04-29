@@ -6,18 +6,18 @@
 			<div class="page-header">
 				<h1>用户登陆 <small>Login</small></h1>
 			</div>
-			<form class="form-horizontal">
+			<form class="form-horizontal" action="" method="POST" name="login">
 				<fieldset>
 					<div class="control-group">
 						<label class="control-label" for="name">UserName</label>
 						<div class="controls">
-							<input type="text" class="input-xlarge" id="name" value="" placeholder="Admin"/>
+							<input type="text" class="input-xlarge" id="name" value="" placeholder="Admin" name="username"/>
 						</div>
 					</div>
                     <div class="control-group">
 						<label class="control-label" for="pnohe">Password</label>
 						<div class="controls">
-							<input type="text" class="input-xlarge" value="" placeholder="Password"/>
+							<input type="text" class="input-xlarge" value="" placeholder="Password" name="password"/>
 						</div>
 					</div>
 					<div class="control-group">

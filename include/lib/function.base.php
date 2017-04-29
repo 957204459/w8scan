@@ -21,12 +21,13 @@ function __autoload($class) {
  * 去除多余的转义字符
  */
 function doStripslashes() {
-    if (get_magic_quotes_gpc()) {
+    if (!get_magic_quotes_gpc()) {
         $_GET = stripslashesDeep($_GET);
         $_POST = stripslashesDeep($_POST);
         $_COOKIE = stripslashesDeep($_COOKIE);
         $_REQUEST = stripslashesDeep($_REQUEST);
     }
+    
 }
 
 /**
@@ -34,6 +35,7 @@ function doStripslashes() {
  */
 function stripslashesDeep($value) {
     $value = is_array($value) ? array_map('stripslashesDeep', $value) : stripslashes($value);
+    
     return $value;
 }
 
@@ -826,6 +828,17 @@ function show_404_page() {
     }
 }
 
+/**
+ * 判断用户是否登陆
+ *
+ */
+function IsLogin(){
+    if(empty($_SESSION["uid"])){
+        emDirect("./?login");
+        return false;
+    }
+    return true;
+}
 
 /**
  * hmac 加密

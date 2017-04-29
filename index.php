@@ -19,7 +19,7 @@ $index->display();*/
 // include View::getview("login"); //登陆
 // include View::getview("webdna_manager");
 // new WebDNA_Model();
-
+doStripslashes();
 $emDispatcher = Dispatcher::getInstance();
 $emDispatcher->dispatch();
 View::output();

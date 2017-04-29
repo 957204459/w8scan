@@ -12,3 +12,6 @@ define('DB_PREFIX','w8scan_');
 
 //home
 define('BLOG_URL','http://127.0.0.1/w8scan/');
+
+// 注册邀请码
+define('REG_CODE',"52w8scan");

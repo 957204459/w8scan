@@ -1,3 +1,7 @@
+<?php 
+if(!defined('EMLOG_ROOT')) {exit('error!');} 
+IsLogin()
+?>
 <div class="container-fluid">
 <div class="row-fluid">
 <?php include View::getview("left_side");?>

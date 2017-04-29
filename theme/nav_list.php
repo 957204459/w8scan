@@ -8,14 +8,21 @@
           </a>
           <a class="brand" href="#">W8scan 任务系统</a>
           <div class="btn-group pull-right">
-			<a class="btn" href=""><i class="icon-user"></i> Admin</a>
+			<a class="btn" href=""><i class="icon-user"></i> <?php echo $_SESSION["user"];?></a>
             <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
               <span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
-			  <li><a href="">Profile</a></li>
+              <?php 
+              if(!empty($_SESSION["user"])):
+              ?>
               <li class="divider"></li>
-              <li><a href="?logout">Logout</a></li>
+              <li><a href="./?logout">Logout</a></li>
+              <?php else:?>
+              <li><a href="./?reg">注册</a></li>
+              <li class="divider"></li>
+              <li><a href="./?login">登陆</a></li>
+              <?php endif;?>
             </ul>
           </div>
           <div class="nav-collapse">

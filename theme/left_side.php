@@ -10,7 +10,7 @@
         <li class="nav-header"><i class="icon-user"></i> 指纹配置</li>
         <li><a href="?webdna_add">新增指纹</a></li>
         <li><a href="?webdna_manager">指纹管理</a></li>
-        <li><a href="?logout">Logout</a></li> 
+        <li><a href="./?logout">Logout</a></li> 
     </ul>
     </div>
 </div>

@@ -3,7 +3,7 @@
  * 全局项加载
  * @copyright (c) Emlog All Rights Reserved
  */
-
+session_start();
 error_reporting(7);
 ob_start();
 header('Content-Type: text/html; charset=UTF-8');

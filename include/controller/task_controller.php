@@ -8,7 +8,7 @@ class Task_Controller {
         if(!empty($_POST["url"])){
             // 开始处理提交表单
             $task = new Task_Model();
-            $token = $task->add($_POST["url"],$_POST["descript"],$_POST["plugins"],$_POST["spider_plugins"]);
+            $token = $task->add(addslashes($_POST["url"]),addslashes($_POST["descript"]),addslashes($_POST["plugins"]),addslashes($_POST["spider_plugins"]));
             $callback_url = BLOG_URL.'?get/'.$token;
         }
         include View::getView("header");
@@ -31,7 +31,7 @@ class Task_Controller {
     }
 
     function reciver_data($params = ''){
-        $data = $_POST["data"];
+        $data = addslashes($_POST["data"]);
         if($params[1]=='/'&&!empty($params[2])&&!empty($data)){
             $token = $params[2];
             $task = new Task_Model();
