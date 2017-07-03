@@ -6,7 +6,8 @@
     <div class="page-header">
         <h1>About <small>w8scan 扫描器</small></h1>
     </div>
-    哪有那么多时间BB？能BB不如多写代码
+    哪有那么多时间BB？能BB不如多写代码</br>
+    <a href="https://yesfree.pw/" target="_blank">我的博客</a>欢迎光临
     </div>
 </div>
 </div>

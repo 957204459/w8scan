@@ -1,6 +1,7 @@
 # CMS识别插件
-import threading,Queue
-
+import threading,Queue,sys
+reload(sys)
+sys.setdefaultcoding('utf-8')
 class Webcms:
     def __init__(self,url,threadNum):
         self.workQueue = Queue.Queue()
